@@ -1,0 +1,19 @@
+name: Staging on gh-pages push
+on:
+  push:
+    branches: [ gh-pages ]
+jobs:
+  test-staging:
+    name: CI rápido (staging)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Quick test for staging
+        run: |
+          echo "Rodando teste rápido no conteúdo de staging..."
+          if [ ! -f staging/index.html ]; then
+            echo "Arquivo staging/index.html não encontrado!"
+            exit 1
+          fi
+          echo "Teste de staging passou!"
